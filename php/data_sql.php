@@ -5,23 +5,33 @@
  * Date: 2019/1/31
  * Time: 11:07
  */
+
+header("Content-type:text/html;charset=UTF-8");
+//$data=json_decode($_POST['data']);
+$data=$_POST['data'];
+//echo("是否接受到数据：".$data[1]).'\n';
+//echo("data是不是字符串：".is_string($data).'\n');
+
 $servername = "localhost";
 $username = "root";
 $password = "123456";
-$dbname = "test";
+$dbname = "ueditorDB";
 
 // 创建连接
+//$mysqli->set_charset('utf8');
 $conn = new mysqli($servername, $username, $password, $dbname);
+// 修改数据库连接字符集为 utf8
+mysqli_set_charset($conn,"utf8");
 // 检测连接
 if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
 }
+//echo "数据的值===》".$data;
 
-$sql = "INSERT INTO test (firstname, lastname, email)
-VALUES ('John', 'Doe', 'john@example.com')";
-
+$sql = "INSERT INTO context (id ,context) VALUES (null,'$data')";
+//insert into tbl (id, name，email) values (null,’liu’,’123@163.com’));
 if ($conn->query($sql) === TRUE) {
-    echo "新记录插入成功";
+    echo "success";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
