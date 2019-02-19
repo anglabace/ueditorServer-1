@@ -26,8 +26,11 @@ mysqli_set_charset($conn,"utf8");
 if ($conn->connect_error) {
     die("连接失败: " . $conn->connect_error);
 }
-//echo "数据的值===》".$data;
 
+// 查询语句
+$sql_query = 'SELECT id=36 FROM content';
+
+// 插入语句
 $sql = "INSERT INTO context (id ,context) VALUES (null,'$data')";
 //insert into tbl (id, name，email) values (null,’liu’,’123@163.com’));
 if ($conn->query($sql) === TRUE) {
@@ -36,5 +39,11 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
+
+
+
 $conn->close();
+
+
+
 ?>
